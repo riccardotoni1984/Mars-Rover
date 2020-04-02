@@ -4,10 +4,14 @@ public class Game {
     private int constraintX;
     private int constraintY;
 
-    public Game(Rover rover, int constraintX, int constraintY) {
-        this.rover = rover;
-        this.constraintX = constraintX;
-        this.constraintY = constraintY;
+    public Game(String input) {
+        setAttributes(input);
+    }
+
+    private void setAttributes(String input) {
+        String[] attributes = input.split(" ");
+        this.constraintX = Integer.valueOf(attributes[0]);
+        this.constraintY = Integer.valueOf(attributes[1]);
     }
 
     public void rotateLeft() {
@@ -34,6 +38,17 @@ public class Game {
         return this.rover;
     }
 
+    public String getConstraints() {
+        return constraintX + " " + constraintY;
+    }
+
+    public void setRover(String input) {
+        String[] positionAttributes = input.split(" ");
+        Integer xCoordinate = Integer.valueOf(positionAttributes[0]);
+        Integer yCoordinate = Integer.valueOf(positionAttributes[1]);
+        String cardinal = positionAttributes[2];
+        this.rover = new Rover(xCoordinate, yCoordinate, Direction.getDirectionByCardinalPointAsAString(cardinal));
+    }
 }
 
 
